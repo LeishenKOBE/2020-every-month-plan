@@ -1,3 +1,10 @@
+<!--
+ * @Description: 
+ * @Author: 石东昭
+ * @Date: 2020-01-21 17:01:23
+ * @LastEditors  : 石东昭
+ * @LastEditTime : 2020-01-21 17:37:53
+ -->
 # 2020-every-month-plan
  2020年每月计划表
 
@@ -9,3 +16,9 @@
 
 for myself
 
+---
+更新一下
+
+突然发现，有两天的代码没有提交记录，很难受
+
+---
