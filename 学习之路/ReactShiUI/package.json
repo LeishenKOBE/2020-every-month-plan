@@ -1,0 +1,68 @@
+{
+  "name": "ReactShiUI",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "commit": "git-cz",
+    "dev": "docz dev",
+    "start": "npm run dev",
+    "build:doc": "rimraf doc-site && docz build",
+    "preview:doc": "docz serve"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LeishenKOBE/ReactShiUI.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LeishenKOBE/ReactShiUI/issues"
+  },
+  "homepage": "https://github.com/LeishenKOBE/ReactShiUI#readme",
+  "devDependencies": {
+    "@commitlint/cli": "^8.3.5",
+    "@commitlint/config-conventional": "^8.3.4",
+    "@types/react": "^16.9.35",
+    "@types/react-dom": "^16.9.8",
+    "@umijs/fabric": "^2.0.8",
+    "commitizen": "^4.1.2",
+    "cz-conventional-changelog": "^3.2.0",
+    "docz": "^2.3.1",
+    "gatsby-plugin-less": "^3.2.1",
+    "husky": "^4.2.5",
+    "less": "^3.11.1",
+    "lint-staged": "^10.2.2",
+    "prettier": "^2.0.5",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "rimraf": "^3.0.2",
+    "typescript": "^3.9.2"
+  },
+  "lint-staged": {
+    "components/**/*.ts?(x)": [
+      "prettier --write",
+      "eslint --fix",
+      "git add"
+    ],
+    "components/**/*.less": [
+      "stylelint --syntax less --fix",
+      "git add"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
+      "pre-commit": "lint-staged"
+    }
+  },
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
+  },
+  "dependencies": {
+    "prop-types": "^15.7.2"
+  }
+}
