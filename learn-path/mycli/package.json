@@ -1,20 +1,18 @@
 {
-  "name": "mycli",
+  "name": "sdz-cli",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "bin": {
+    "sdz": "index.js"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/LeishenKOBE/mycli.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/LeishenKOBE/mycli/issues"
-  },
-  "homepage": "https://github.com/LeishenKOBE/mycli#readme"
+  "dependencies": {
+    "commander": "^5.1.0"
+  }
 }
