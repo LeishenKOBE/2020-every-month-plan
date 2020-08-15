@@ -1,4 +1,4 @@
-# demo
+# typescript-app
 
 ## Project setup
 ```
