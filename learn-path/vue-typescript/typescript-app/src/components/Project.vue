@@ -1,9 +1,11 @@
 <template>
-  <div></div>
+  <div>{{ message }}</div>
 </template>
 <script lang="ts">
-export default {};
-</script>
-<style lang="less" scoped>
+import { Component, Prop, Vue } from "vue-property-decorator";
 
-</style>
+export default class Project extends Vue {
+  private message: string = "许嵩";
+}
+</script>
+<style lang="less" scoped></style>

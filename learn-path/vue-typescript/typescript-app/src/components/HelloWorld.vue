@@ -1,14 +1,19 @@
 <template>
   <div class="hello">
     <h1>{{ msg }}</h1>
+    <Project />
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
-import Project from "@/components/";
+import Project from "@/components/Project.vue";
 
-@Component
+@Component({
+  components: {
+    Project,
+  },
+})
 export default class HelloWorld extends Vue {
   @Prop() private msg!: string;
 }
