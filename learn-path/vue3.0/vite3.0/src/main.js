@@ -104,4 +104,4 @@ function createCanvasApp(newApp) {
   return app;
 }
 
-createCanvasApp(CanvasApp).mount('#demo');
+createCanvasApp(CanvasApp).mount("#demo");

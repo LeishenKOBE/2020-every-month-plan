@@ -1,35 +1,29 @@
 <template>
-<div @click="handleClick">
+  <div @click="handleClick">
     {{ modelValue }}
-</div>
+  </div>
 </template>
 
 <script>
-import {
-    ref,
-    onMounted,
-    reactive,
-    watch,
-    computed
-} from "vue";
+import { ref, onMounted, reactive, watch, computed } from "vue";
 
 export default {
-    name: "",
-    props: {
-        modelValue: {
-            default: "xusong",
-        },
+  name: "",
+  props: {
+    modelValue: {
+      default: "xusong",
     },
-    components: {},
-    setup(context) {
-        const handleClick = () => {
-            context.emit('update:modelValue', (context.modelValue = '许嵩'))
-        }
+  },
+  components: {},
+  setup(context) {
+    const handleClick = () => {
+      context.emit("update:modelValue", (context.modelValue = "许嵩"));
+    };
 
-        return {
-            handleClick
-        }
-    },
+    return {
+      handleClick,
+    };
+  },
 };
 </script>
 
