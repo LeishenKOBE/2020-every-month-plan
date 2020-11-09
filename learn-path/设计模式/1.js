@@ -1,8 +1,10 @@
-// 单例模式
+// 装饰器模式
+@testable
+class MyTestableClass{
 
-// 懒汉单例模式
+}
 
-class LazySingleton {}
-
-// 恶汉单例模式
-class HungrySingleton {}
+function testable(target){
+    target.isTestable = true;
+}
+console.log(MyTestableClass.isTestable)
