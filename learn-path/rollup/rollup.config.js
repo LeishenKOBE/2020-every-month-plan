@@ -1,10 +1,11 @@
-import json from "rollup-plugin-json";
+import json from "@rollup/plugin-json";
 
 export default {
   input: "./src/main.js",
   output: {
+    name: "xusong",
     file: "./dist/bundle.js",
-    format: "cjs",
+    format: "umd",
   },
   plugins: [json()],
 };
