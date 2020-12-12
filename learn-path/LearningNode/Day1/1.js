@@ -1,3 +1,9 @@
-const hrtp = require('http')
+let events = require("events");
 
-http.createServer()
+let myEmitter = new events.EventEmitter();
+
+myEmitter.on("someEvent", function (message) {
+  console.log(message);
+});
+
+myEmitter.emit("someEvent", "许嵩");
