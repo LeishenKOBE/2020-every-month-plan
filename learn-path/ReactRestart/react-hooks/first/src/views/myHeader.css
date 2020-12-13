@@ -1,0 +1,22 @@
+.my-header {
+  background-color: #0081ff;
+  display: flex;
+  justify-content: space-between;
+}
+
+.title {
+  font-size: 20px;
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.route-list {
+  list-style: none;
+  display: flex;
+}
+
+.route-list-item {
+  margin-right: 16px;
+  color: #ffffff;
+  font-size: 16px;
+}
