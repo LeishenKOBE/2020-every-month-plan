@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <h1>{{title}}</h1>
+      <p>{{content}}</p>
+    </div>
+    <script>
+      let app = document.getElementById("app");
+      const obj = {
+        title: "许嵩",
+        content: "有何不可",
+      };
+      const tpl = app.innerHTML;
+      const res = tpl.replace(/{{(.*?)}}/g, function (node, index) {
+        return obj[index];
+      });
+      app.innerHTML = res;
+    </script>
+  </body>
+</html>
