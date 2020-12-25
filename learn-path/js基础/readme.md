@@ -135,3 +135,64 @@ g();
 
 ### 属性标志和属性描述符
 
+### 原型继承
+
+<code>[[Prototype]]</code>
+原型继承有两个限制：
+
+1. 引用不能形成闭环。如果我们试图在一个闭环中分配**proto**，JavaScript 会抛出错误。
+2. **proto**的值可以是对象，也可以是 null。其他类型的值会被忽略
+
+当然，这可能很显而易见，但是仍然要强调：只能有一个 [[Prototype]]。一个对象不能从其他两个对象获得继承。
+
+for in 循环也会迭代继承的属性
+
+hasOwnProperty 也是继承而来为什么没有被 for in 循环出来
+
+答案很简单：它是不可枚举的。就像 Object.prototype 的其他属性，hasOwnProperty 有 enumerable:false 标志。并且 for..in 只会列出可枚举的属性。这就是为什么它和其余的 Object.prototype 属性都未被列出。
+
+### F.prototype
+
+如果 F.prototype 是一个对象，那么 new 操作符会使用它为新对象设置[[Prototype]].
+
+注意，这里的 F.prototype 指的是 F 的一个名为 prototype 的属性。
+
+每个函数都有"prototype"属性，即使我们没有提供给他。
+
+默认的 prototype 是一个只有属性 constructor 的对象，属性 constructor 指向函数自身.
+
+1. F.prototype 属性（不要把它与[[Prototype]]弄混了）在 new F 被调用的时候为新对象的[[Prototype]]赋值。
+2. F.prototype 的值要么是一个对象，要么就是 null：其他值都不起作用。
+3. "prototype" 属性仅在设置了一个构造函数（constructor function），并通过 new 调用时，才具有这种特殊的影响。
+
+### 原生的原型
+
+所有的内建对象都遵循相同的模式(pattern)：
+
+1. 方法都存储在 prototype 中(Array.prototype,Object.prototype,Date.prototype)
+   对象本身只存储数据
+
+原始数据类型也将方法存储在包装器对象的 prototype 中，Number.prototype，String.prototype 和 Boolean.prototype。只有 undefined 和 null 没有包装器对象
+
+内建原型可以被修改或者被新的方法填充。
+
+### Class
+
+类构造器与函数构造器的不同
+
+1. 首先，通过 class 创建的函数具有特殊的内部属性标记[[FunctionKind]]: "classConstructor"。因此，它与手动创建并不完全相同。与普通函数不同，class 必须使用 new 来调用它。
+
+2. 类方法是不可枚举的。类定义"prototype"中所有方法的 enumerable 标志设置为 false
+3. 类总是使用 use strict。在类构造中的所有代码都将自动进入严格模式。
+
+计算属性名称
+
+```js
+class User {
+  ['say' + 'Hi']() {
+    alert('Hello');
+  }
+}
+
+new User().sayHi();
+```
