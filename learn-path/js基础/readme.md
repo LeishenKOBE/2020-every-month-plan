@@ -189,10 +189,16 @@ hasOwnProperty 也是继承而来为什么没有被 for in 循环出来
 
 ```js
 class User {
-  ['say' + 'Hi']() {
-    alert('Hello');
+  ["say" + "Hi"]() {
+    alert("Hello");
   }
 }
 
 new User().sayHi();
 ```
+
+### Object 方法
+
+1. Object.create 创建一个新对象，使用现有的对象来提供新创建的对象的\_\_proto\_\_
+
+### this
