@@ -77,3 +77,155 @@ Function instanceof Object === true;
 - 然后规定Object.prototype = root_prototype，这时候Object才显得特殊，成为了原型链的顶端，否则它和其他函数没有任何区别
 - 于是所有东西，包括Function，都成了Object的实例了
 ```
+
+### this
+
+this 是一个指针，并且它永远指向一个对象，对于非箭头函数来说，具体指向哪个对象是在运行时基于函数的执行环境动态绑定的。对于箭头函数来说，具体指向哪个对象是在箭头函数声明时的环境确定的
+
+1. this 的使用场景--非箭头函数
+
+- 作为对象的方法调用
+- 作为普通函数调用
+- 作为构造函数调用
+- 作为事件的回调函数调用
+- Function.prototype.call 和 Function.prototype.apply 调用
+
+(1) 作为对象的方法调用
+
+```js
+let userName = 'xusong';
+let obj = {
+  userName: 'shidongzhao',
+  sayName() {
+    return this.userName;
+  },
+};
+console.log(obj.sayName()); // shidongzhao
+```
+
+杰伦：当函数作为对象的方法调用的时候，this 指向该对象
+
+tips: 把对象的方法赋值给一个 var 定义的全局变量,然后再在全局环境下执行会变成 xusong，此时 this 指向 window
+
+(2) 作为普通函数调用
+
+this 指向 window
+
+```js
+// 作为普通函数调用
+let userName = 'wenyaoyao';
+function getName() {
+  console.log(this.userName);
+}
+getName();
+//输出 undefined
+```
+
+可以发现 let 和 const 定义的变量并不会挂靠到 window 上，然后此时 this 指向的是 window，所以打印的时候是 `undefined`
+
+(3) 作为构造函数去调用
+
+```js
+function Person() {
+  this.userName = 'longhanghang';
+  //return this;
+}
+
+let person1 = new Person();
+console.log(person1.userName);
+```
+
+杰伦：当使用 new 运算符调用函数时总会返回一个对象，this 指向这个对象。
+
+函数内部区分一个函数的调用类型：
+
+```js
+// 函数内判断调用类型
+let obj = {};
+function gudgeType() {
+  if (this instanceof gudgeType) {
+    console.log('构造函数调用');
+  } else {
+    console.log('其他方式调用');
+  }
+}
+
+gudgeType();
+new gudgeType();
+// 输出其他方式调用
+// 构造函数调用
+```
+
+(4) 作为事件的回调函数调用
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>作为事件的回调函数使用</title>
+  </head>
+  <body>
+    <div id="test">点击我</div>
+  </body>
+  <script type="text/javascript">
+    //作为事件的回调函数使用
+    var testDom = document.querySelector('#test');
+    test.onclick = function (e) {
+      console.log(this);
+    };
+  </script>
+</html>
+// 输出
+<div id="test">点击我</div>
+```
+
+以上代码运行结果是`<div id="test">点击我</div>`
+
+作为事件的回调函数调用的时候，this 指向绑定事件的 dom 对象
+
+tips:如果在回调函数再定义一个函数，this 会指向 window
+
+(5) Function.prototype.call 和 Function.prototype.apply 调用
+
+```js
+//Function.prototype.call()
+
+function getName(name, age) {
+  console.log(this.name, name, age);
+}
+var obj = {name: 'longhanghang'};
+getName.call(obj, 'wenyaoyao', 11);
+
+//输出为 longhanghang wenyaoyao 11
+```
+
+```js
+//Function.prototype.apply()
+
+function getName(name, age) {
+  console.log(this.name, name, age);
+}
+var obj = {name: 'longhanghang'};
+getName.apply(obj, ['wenyaoyao', 11]);
+
+//输出为 longhanghang wenyaoyao 11
+```
+
+call 和 apply 指向第一个参数，且优先级高于作为对象的方法调用
+
+箭头函数和非箭头函数的区别
+
+- 箭头函数都是匿名函数，非箭头函数可以是匿名函数也可以是具名函数
+- 箭头函数不能使用 new 关键字，非箭头函数可以
+- 箭头函数没有 prototype 属性，非箭头函数有
+- 箭头函数不绑定 arguments，非箭头函数要绑定
+- 箭头函数无法使用 call 和 apply 修改的 this 的指向，非箭头函数可以
+- 箭头函数的 this 在申明时决定，非箭头函数的 this 在执行时确定
+
+### 手写 call,apply,bind
+
+详见 index.js
+
+![this](./this.png)
