@@ -137,7 +137,8 @@ g();
 
 ### 原型继承
 
-<code>[[Prototype]]</code>
+`[[Prototype]]`</code>`
+
 原型继承有两个限制：
 
 1. 引用不能形成闭环。如果我们试图在一个闭环中分配**proto**，JavaScript 会抛出错误。
@@ -199,6 +200,4 @@ new User().sayHi();
 
 ### Object 方法
 
-1. Object.create 创建一个新对象，使用现有的对象来提供新创建的对象的\_\_proto\_\_
-
-### this
+1. Object.create 创建一个新对象，使用现有的对象来提供新创建的对象的`__proto__`

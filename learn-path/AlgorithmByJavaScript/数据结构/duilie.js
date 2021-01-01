@@ -69,5 +69,4 @@ function MinPriorityQueue() {
     this.print = function() {
         console.log(this.items.toString());
     };
-    console.log('修复bug')
 }
