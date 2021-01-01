@@ -177,6 +177,11 @@ hasOwnProperty 也是继承而来为什么没有被 for in 循环出来
 
 内建原型可以被修改或者被新的方法填充。
 
+- 所有`函数对象`的`__proto__`都在`Function.prototype`上
+- 所有函数对象的`prototype`都指向自身的 `prototype`
+- 所有实例对象(被 new 或者其他方式)的`__proto__`都指向构造函数的 prototype
+- `Object.prototype`的`__proto__`为 null
+
 ### Class
 
 类构造器与函数构造器的不同
@@ -201,3 +206,5 @@ new User().sayHi();
 ### Object 方法
 
 1. Object.create 创建一个新对象，使用现有的对象来提供新创建的对象的`__proto__`
+
+### Event Loop
