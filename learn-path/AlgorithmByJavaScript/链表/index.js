@@ -30,14 +30,12 @@ class LinkedList {
     }
     return null;
   }
-  delete(val) {
-    
-  }
+  delete(val) {}
 }
 
-let arr = ["1", "2", "3", "4", "5"];
+let arr = ['1', '2', '3', '4', '5'];
 let list = new LinkedList();
 arr.forEach((item) => {
   list.insert(item);
 });
-console.log(list.find("23"));
+console.log(list.find('23'));
