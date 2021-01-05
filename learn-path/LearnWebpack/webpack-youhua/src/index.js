@@ -1,5 +1,4 @@
 import './css/index.css';
-import 'ant-design-vue/dist/antd.css';
 import Vue from 'vue';
 import App from './App.vue';
 import Vuex from 'vuex';

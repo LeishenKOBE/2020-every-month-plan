@@ -2,7 +2,10 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
+const webpack = require('webpack');
 const {BundleAnalyzerPlugin} = require('webpack-bundle-analyzer');
+const CompressionPlugin = require('compression-webpack-plugin');
+const AntdDayjsWebpackPlugin = require('antd-dayjs-webpack-plugin');
 
 module.exports = {
   entry: './src/index.js',
@@ -14,6 +17,7 @@ module.exports = {
   resolve: {
     alias: {
       '@': path.resolve('src'),
+      '@ant-design/icons/lib/dist$': path.resolve('./src/antd/icons.js'),
     },
     extensions: ['.js', '.json', '.vue', '.scss', '.css'],
   },
@@ -54,6 +58,13 @@ module.exports = {
     new CleanWebpackPlugin(),
     new VueLoaderPlugin(),
     new BundleAnalyzerPlugin(),
+    new webpack.ContextReplacementPlugin(/moment[/\\]locale$/, /zh-cn/),
+    new CompressionPlugin({
+      test: new RegExp(
+        '\\.(js|css)$' //压缩 js 与 css
+      ),
+    }),
+    new AntdDayjsWebpackPlugin(),
   ],
   devServer: {
     port: '3000',
