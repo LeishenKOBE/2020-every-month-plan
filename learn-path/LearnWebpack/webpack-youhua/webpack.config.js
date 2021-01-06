@@ -6,6 +6,8 @@ const webpack = require('webpack');
 const {BundleAnalyzerPlugin} = require('webpack-bundle-analyzer');
 const CompressionPlugin = require('compression-webpack-plugin');
 const AntdDayjsWebpackPlugin = require('antd-dayjs-webpack-plugin');
+// const WebpackBar = require('webpackbar');
+var ProgressBarPlugin = require('progress-bar-webpack-plugin');
 
 module.exports = {
   entry: './src/index.js',
@@ -52,12 +54,13 @@ module.exports = {
     ],
   },
   plugins: [
+    new ProgressBarPlugin(),
     new HtmlWebpackPlugin({
       template: './public/index.html',
     }),
     new CleanWebpackPlugin(),
     new VueLoaderPlugin(),
-    new BundleAnalyzerPlugin(),
+    // new BundleAnalyzerPlugin(),
     new webpack.ContextReplacementPlugin(/moment[/\\]locale$/, /zh-cn/),
     new CompressionPlugin({
       test: new RegExp(
