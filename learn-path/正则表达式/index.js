@@ -1,13 +1,14 @@
-// 匹配16进制颜色值
+// 匹配颜色值
+// let reg = /#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})/g;
+// let string = "#ffbbad #Fc01DF #FFF #ffE";
+// console.log(string.match(reg));
 
-// const reg = /#([0-9a-fA-F]{6}|[0-9a-fA-F]{3})/g;
-// const str = "#ffbbad #Fc01DF #FFF #ffE";
-// 匹配时间
-// let regex = /^([01][0-9]|[2][0-3]):[0-5][0-9]$/g;
-// console.log(regex.test("24:02"));
+// 匹配时间 24小时
+// let reg = /([0-1][0-9]|[2][0-3]):([0-5][0-9])/;
+// console.log(reg.test("23:59"));
+// console.log(reg.test("02:07"));
 
-// 匹配日期
-// let regex = /^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/g;
-// console.log(regex.test("2020-12-19"));
-
-// Windows操作系统文件路径
+// 匹配id
+let reg = /id="[^"]*"/g;
+var string = '<div id="container" class="main"></div>';
+console.log(string.match(reg)[0]);
