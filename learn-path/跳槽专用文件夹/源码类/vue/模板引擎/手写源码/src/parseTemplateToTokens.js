@@ -1,4 +1,5 @@
 import Scanner from "./Scanner";
+import nestTokens from "./nestTokens";
 
 const parseTemplateToTokens = (templateStr) => {
   let tokens = [];
@@ -12,7 +13,7 @@ const parseTemplateToTokens = (templateStr) => {
     scanner.scan("{{");
     word = scanner.scanUntil("}}");
     if (word !== "") {
-      if (words[0] == "#") {
+      if (word[0] == "#") {
         tokens.push(["#", word.substring(1)]);
       } else if (word[0] === "/") {
         tokens.push(["/", word.substring(1)]);
@@ -22,6 +23,6 @@ const parseTemplateToTokens = (templateStr) => {
     }
     scanner.scan("}}");
   }
-  return tokens;
+  return nestTokens(tokens);
 };
 export default parseTemplateToTokens;

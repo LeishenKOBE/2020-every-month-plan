@@ -8,7 +8,22 @@
 <body>
     <script src="/xuni/bundle.js"></script>
     <script>
-        let templateStr = `我买了一个{{thing}},好{{mode}}啊`
+        let templateStr = `
+            <div>
+                <ol>
+                    {{#students}}
+                    <li>
+                        学生{{item.name}}的爱好是
+                        <ol>
+                            {{#item.hobbies}}
+                            <li>{{.}}</li>
+                            {{/item.hobbies}}
+                        </ol>    
+                    </li>
+                    {{/students}}    
+                </ol>    
+            </div>
+        `
         SSG_TemplateEngine.render(templateStr)
     </script>
 </body>
