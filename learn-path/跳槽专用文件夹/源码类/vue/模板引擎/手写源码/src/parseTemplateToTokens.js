@@ -18,7 +18,7 @@ const parseTemplateToTokens = (templateStr) => {
       } else if (word[0] === "/") {
         tokens.push(["/", word.substring(1)]);
       } else {
-        tokens.push(["text", word]);
+        tokens.push(["name", word]);
       }
     }
     scanner.scan("}}");
