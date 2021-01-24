@@ -1,7 +1,14 @@
+import { observe } from "./observe";
+import Dep from "./Dep";
+
 export default function defineReactive(data, key, val) {
+  const dep = new Dep();
   if (arguments.length === 2) {
-    val = obj[key];
+    val = data[key];
   }
+
+  let childOb = observe(val);
+
   Object.defineProperty(data, key, {
     // 可枚举
     enumerable: true,
@@ -14,7 +21,9 @@ export default function defineReactive(data, key, val) {
       if (val === newVal) {
         return;
       }
+      console.log(newVal);
       val = newVal;
+      childOb = observe(newVal);
     },
   });
 }

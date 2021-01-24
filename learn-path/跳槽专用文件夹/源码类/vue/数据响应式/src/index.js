@@ -1,5 +1,4 @@
-import defineReactive from "./defineReactive";
-import Observer from "./Observer";
+import { observe } from "./observe";
 
 let obj = {
   a: {
@@ -7,20 +6,18 @@ let obj = {
       n: 5,
     },
   },
+  b: 10,
+  c: {
+    d: {
+      e: {
+        f: 20,
+      },
+    },
+  },
+  g: [1, 2, 3, 4, 5],
 };
 
-defineReactive(obj, "a", {});
-console.log(obj.a);
+observe(obj);
 
-function observe(val) {
-  if (typeof val === "object") {
-    return;
-  }
-  var ob;
-  if (typeof val.__ob__ !== "undefined") {
-    ob = val.__ob__;
-  } else {
-    ob = new Observer(val);
-  }
-  return ob;
-}
+obj.g.splice(1, 2);
+console.log(obj.g);
