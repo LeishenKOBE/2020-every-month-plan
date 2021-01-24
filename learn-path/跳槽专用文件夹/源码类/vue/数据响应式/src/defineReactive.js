@@ -15,6 +15,12 @@ export default function defineReactive(data, key, val) {
     // 可配置的
     configurable: true,
     get() {
+      if (Dep.target) {
+        dep.depend();
+        if(childOb) {
+          childOb.dep.depend()
+        }
+      }
       return val;
     },
     set(newVal) {
@@ -24,6 +30,7 @@ export default function defineReactive(data, key, val) {
       console.log(newVal);
       val = newVal;
       childOb = observe(newVal);
+      dep.notify();
     },
   });
 }

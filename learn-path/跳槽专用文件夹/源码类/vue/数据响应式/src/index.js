@@ -20,4 +20,5 @@ let obj = {
 observe(obj);
 
 obj.g.splice(1, 2);
+obj.b = 20
 console.log(obj.g);
